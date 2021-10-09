@@ -1,3 +1,15 @@
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
 def is_palindrome(n):
     """
     :param n: numar intreg
@@ -75,7 +87,7 @@ def read_list():
 
     return lst
 
-def get_longest_all_palindromes(lst: list[int]) -> List[int]:
+def get_longest_all_palindromes(lst: list[int]) -> list[int]:
     """
     Determina cea mai lunga subsecventa de palindroame.
     :param lst: lista in care se cauta subsecventa
@@ -96,7 +108,7 @@ def get_longest_all_palindromes(lst: list[int]) -> List[int]:
                     result = lst[st:dr+1]
     return result
 
-def get_longest_prime_digits(lst: list[int]) -> List[int]:
+def get_longest_prime_digits(lst: list[int]) -> list[int]:
     """
     Determina cea mai lunga subsecventa de numere care sunt formate numai din cifre prime
     :param lst: lista in care se cauta subsecventa
@@ -165,37 +177,28 @@ def main():
     while True:
 
         show_menu()
-        optiune = input("Introduceti optiunea dorita: ")
+        optiune = input(f"{bcolors.BOLD}{bcolors.OKBLUE}Introduceti optiunea dorita: {bcolors.ENDC}")
 
         if optiune == '1':
             lst = read_list()
         elif optiune == '2':
             rezultat = get_longest_all_palindromes(lst)
             if len(rezultat) > 0:
-                print(f"{bcolors.OKGREEN}Cea mai lunga subsecventa de palindroame este: {bcolors.ENDC}", rezultat)
+                print(f"{bcolors.BOLD}{bcolors.OKGREEN}Cea mai lunga subsecventa de palindroame este: {bcolors.ENDC}", rezultat)
             else:
-                print(f"{bcolors.WARNING}In secventa data nu exista palindroame!{bcolors.ENDC}")
+                print(f"{bcolors.BOLD}{bcolors.WARNING}In secventa data nu exista palindroame!{bcolors.ENDC}")
         elif optiune == '3':
             rezultat = get_longest_prime_digits(lst)
             if len(rezultat) > 0:
-                print(f"{bcolors.OKGREEN}Cea mai lunga subsecventa de numere ce sunt formate numai din cifre prime este:{bcolors.ENDC}", rezultat)
+                print(f"{bcolors.BOLD}{bcolors.OKGREEN}Cea mai lunga subsecventa de numere ce sunt formate numai din cifre prime este:{bcolors.ENDC}", rezultat)
             else:
-                print(f"{bcolors.WARNING}In secventa data nu exista numere ce sunt formate numai din cifre prime!{bcolors.ENDC}")
+                print(f"{bcolors.BOLD}{bcolors.WARNING}In secventa data nu exista numere formate numai din cifre prime!{bcolors.ENDC}")
         elif optiune == 'x':
+            print(f"{bcolors.BOLD}{bcolors.WARNING}Inchidere program... {bcolors.ENDC}")
             break
         else:
-            print(f"{bcolors.FAIL}Optiune invalida! Reincercati!{bcolors.ENDC}")
+            print(f"{bcolors.BOLD}{bcolors.FAIL}Optiune invalida! Reincercati!{bcolors.ENDC}")
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
 
 
 if __name__ == '__main__':
