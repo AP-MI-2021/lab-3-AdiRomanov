@@ -119,12 +119,12 @@ def get_longest_prime_digits(lst: list[int]) -> list[int]:
     result = []
     for st in range(n):
         for dr in range(st, n):
-            all_pal = True
+            all_prime = True
             for num in lst[st:dr + 1]:
                 if all_digits_are_prime(num) is False:
-                    all_pal = False
+                    all_prime = False
                     break
-            if all_pal:
+            if all_prime:
                 if dr - st + 1 > len(result):
                     result = lst[st:dr + 1]
     return result
@@ -171,12 +171,12 @@ def get_longest_all_even(lst: list[int]) -> list[int]:
     result = []
     for st in range(n):
         for dr in range(st, n):
-            all_pal = True
+            all_even = True
             for num in lst[st:dr + 1]:
                 if num % 2 == 1:
-                    all_pal = False
+                    all_even = False
                     break
-            if all_pal:
+            if all_even:
                 if dr - st + 1 > len(result):
                     result = lst[st:dr + 1]
     return result
