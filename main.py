@@ -157,6 +157,31 @@ def test_all_digits_are_prime():
     assert all_digits_are_prime(22) is True
     assert all_digits_are_prime(21) is False
 
+
+
+def get_longest_all_even(lst: list[int]) -> list[int]:
+    """
+    Determina cea mai lunga secventa de numere pare
+    :param lst: lista in care se cauta subsecventa
+    :return: subsecventa gasita
+
+    """
+
+    n = len(lst)
+    result = []
+    for st in range(n):
+        for dr in range(st, n):
+            all_pal = True
+            for num in lst[st:dr + 1]:
+                if num % 2 == 1:
+                    all_pal = False
+                    break
+            if all_pal:
+                if dr - st + 1 > len(result):
+                    result = lst[st:dr + 1]
+    return result
+
+
 def show_menu():
     """
     Afiseaza meniul!
@@ -165,6 +190,8 @@ def show_menu():
     print("1. Citeste o lista de numere.")
     print("2. Cea mai lunga subsecventa de palindroame din lista citita.")
     print("3. Cea mai lunga subsecventa de numere formate numai din cifre prime.")
+    print("4. Cea mai lunga subsecventa de numere pare.")
+    print("5. Afisare lista.")
     print("x. Iesire din program - exit")
 
 def main():
@@ -193,6 +220,14 @@ def main():
                 print(f"{bcolors.BOLD}{bcolors.OKGREEN}Cea mai lunga subsecventa de numere ce sunt formate numai din cifre prime este:{bcolors.ENDC}", rezultat)
             else:
                 print(f"{bcolors.BOLD}{bcolors.WARNING}In secventa data nu exista numere formate numai din cifre prime!{bcolors.ENDC}")
+        elif optiune == '4':
+            rezultat = get_longest_all_even(lst)
+            if len(rezultat) > 0:
+                print(f"{bcolors.BOLD}{bcolors.OKGREEN}Cea mai lunga subsecventa de numere pare:{bcolors.ENDC}", rezultat)
+            else:
+                print(f"{bcolors.BOLD}{bcolors.WARNING}In secventa data nu exista numere pare!{bcolors.ENDC}")
+        elif optiune == '5':
+                print(f"{bcolors.BOLD}{bcolors.OKGREEN}Lista citita este:{bcolors.ENDC}", str(lst))
         elif optiune == 'x':
             print(f"{bcolors.BOLD}{bcolors.WARNING}Inchidere program... {bcolors.ENDC}")
             break
